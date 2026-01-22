@@ -4,7 +4,7 @@ A self-improving product system that reads daily reports, identifies the #1 acti
 
 **The concept:** Your product generates reports about its performance. An AI agent analyzes those reports, picks the most impactful fix, creates a plan, and implements it—all while you sleep. You wake up to a PR ready for review.
 
-Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/) and [Ryan Carson's implementation](https://x.com/ryancarson/status/2008548371712135632).
+Built on [Kieran Klaassen's Compound Engineering](https://every.to/chain-of-thought/compound-engineering-how-every-codes-with-agents) methodology, [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/), and [Ryan Carson's implementation](https://x.com/ryancarson/status/2008548371712135632).
 
 ## How It Works
 
