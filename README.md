@@ -10,8 +10,9 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/) and [Ry
 
 ```mermaid
 flowchart TD
-    subgraph Input
-        R[📊 Daily Report<br/>metrics, errors, feedback]
+    subgraph "Phase 0: Your System"
+        GEN[Generate Daily Report<br/>your code, cron, etc.]
+        GEN --> R[📊 reports/*.md<br/>metrics, errors, feedback]
     end
     
     subgraph "Phase 1: Analysis"
