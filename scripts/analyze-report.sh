@@ -118,7 +118,7 @@ case "$PROVIDER" in
       -H "Authorization: Bearer $OPENAI_API_KEY" \
       -d "{
         \"model\": \"gpt-5.2\",
-        \"max_tokens\": 1024,
+        \"max_completion_tokens\": 1024,
         \"messages\": [{\"role\": \"user\", \"content\": $PROMPT_ESCAPED}]
       }")
     TEXT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // empty')
