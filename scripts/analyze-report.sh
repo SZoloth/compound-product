@@ -24,15 +24,9 @@ if [ ! -f "$REPORT_PATH" ]; then
   exit 1
 fi
 
-# Detect which provider is available
+# Detect which provider is available (Vercel AI Gateway preferred)
 PROVIDER=""
-if [ -n "$ANTHROPIC_API_KEY" ]; then
-  PROVIDER="anthropic"
-elif [ -n "$OPENAI_API_KEY" ]; then
-  PROVIDER="openai"
-elif [ -n "$OPENROUTER_API_KEY" ]; then
-  PROVIDER="openrouter"
-elif [ -n "$VERCEL_OIDC_TOKEN" ]; then
+if [ -n "$VERCEL_OIDC_TOKEN" ]; then
   # Vercel AI Gateway with OIDC auth (from `vercel env pull`)
   PROVIDER="gateway"
   AI_GATEWAY_URL="${AI_GATEWAY_URL:-https://ai-gateway.vercel.sh/v1}"
@@ -42,6 +36,12 @@ elif [ -n "$AI_GATEWAY_API_KEY" ]; then
   PROVIDER="gateway"
   AI_GATEWAY_URL="${AI_GATEWAY_URL:-https://ai-gateway.vercel.sh/v1}"
   AI_GATEWAY_AUTH_TOKEN="$AI_GATEWAY_API_KEY"
+elif [ -n "$ANTHROPIC_API_KEY" ]; then
+  PROVIDER="anthropic"
+elif [ -n "$OPENAI_API_KEY" ]; then
+  PROVIDER="openai"
+elif [ -n "$OPENROUTER_API_KEY" ]; then
+  PROVIDER="openrouter"
 fi
 
 if [ -z "$PROVIDER" ]; then
