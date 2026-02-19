@@ -150,3 +150,21 @@ When implementing tasks, update relevant AGENTS.md files with:
 - Configuration requirements
 
 This creates long-term memory for future agents and developers.
+
+## Local project notes
+- Clipboard History prototype lives in `clipboard-history/` as a SwiftPM executable app.
+- Package name: `ClipboardHistory`; target: `ClipboardHistoryApp`.
+- `Package.swift` sets `platforms: [.macOS(.v13)]` to avoid availability issues.
+- Build from `clipboard-history/` with `swift build`.
+- Clipboard monitoring scaffold is in `clipboard-history/Sources/ClipboardHistoryApp/Clipboard/ClipboardMonitor.swift` and logs pasteboard type counts (no content).
+- Normalization/classification scaffolds live in `clipboard-history/Sources/ClipboardHistoryApp/Clipboard/ClipboardNormalizer.swift` and `clipboard-history/Sources/ClipboardHistoryApp/Clipboard/ClipboardClassifier.swift`.
+- Hotkey registration uses Carbon in `clipboard-history/Sources/ClipboardHistoryApp/Hotkey/HotkeyManager.swift` (Cmd+Shift+V toggles the window).
+- UI shell is AppKit-based in `clipboard-history/Sources/ClipboardHistoryApp/UI/ClipboardWindowController.swift`.
+- Clipboard actions (copy/paste/delete) are in `clipboard-history/Sources/ClipboardHistoryApp/Clipboard/ClipboardActions.swift`.
+- Persistence uses SQLite in `clipboard-history/Sources/ClipboardHistoryApp/Storage/ClipboardPersistence.swift` with Keychain key in `clipboard-history/Sources/ClipboardHistoryApp/Storage/KeychainHelper.swift`. If SQLCipher is unavailable, it falls back to plaintext SQLite and logs a warning.
+- The AppKit UI now includes a grouped list, preview panel, and action menu in `clipboard-history/Sources/ClipboardHistoryApp/UI/ClipboardWindowController.swift` with a custom `ClipboardTableView`.
+- UI styling uses `NSVisualEffectView` panels and grouped rows to mimic Raycast; search now filters live via `NSSearchFieldDelegate`.
+- Top bar pills are custom `NSView` containers (`makePillContainer`) to style the search field and type filter.
+- App has been renamed to "Pastey"; the SwiftPM executable target is now `Pastey` under `clipboard-history/Sources/Pastey`.
+- Settings and preferences live in `clipboard-history/Sources/Pastey/Settings/SettingsStore.swift` and `clipboard-history/Sources/Pastey/UI/PreferencesWindowController.swift` (retention limit + ignore list).
+- Pinning is supported in `ClipboardHistoryStore` and surfaced via the Actions menu in `ClipboardWindowController`.
